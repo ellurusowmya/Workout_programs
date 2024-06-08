@@ -1,0 +1,36 @@
+<app-not-found [visible]="!my || my.programs.length <=0"
+notFoundMessage="Workout page Is Empty!"
+resetLinkText="Go To Homepage"
+>
+
+</app-not-found>
+
+<div *ngIf="my && my.programs.length>0" class="container">
+<ul>
+    <li *ngFor="let myProgram of my.programs">
+        <div>
+            <img [src]="myProgram.workout.imageUrl" [alt]="myProgram.workout.name">
+        </div>
+        <div>
+            <a routerLink="/workout{{myProgram.workout.id}}">
+                {{myProgram.workout.name}}
+            </a>
+        </div>
+
+        <div>
+            📆{{myProgram.days}}
+        </div>
+
+        <div>
+            <button class="remove-button" (click)="removeFromMy(myProgram)" >
+                Remove
+            </button>
+        </div>
+    </li>
+</ul>
+<div class="checkout">
+    <div>
+        <div class="workouts-count">{{my.programs.length}}  </div>
+    </div>
+</div>
+</div>

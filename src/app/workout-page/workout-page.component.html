@@ -1,0 +1,50 @@
+<app-not-found [visible]="!workout" notFoundMessage="Product Not Found! "
+resetLinkText="Back To Homepage"></app-not-found>
+<div *ngIf="workout" class="container">
+    <img [src]="workout.imageUrl" [alt]="workout.name" />
+    <div class="content">
+    <div class="details">
+        <div class="header">
+            <span class="name">
+                {{workout.name}}
+            </span>
+            <span class="favourite" [ngClass]="{'filled-heart': workout.favorite, 'empty-heart': !workout.favorite}">
+                ❤
+            </span>
+        </div>
+
+        <div class="rating">
+            <span class="stars">
+              <!-- Use ngFor to generate star symbols based on workout.stars -->
+              <ng-container *ngFor="let star of [1,2,3,4,5]; let i = index">
+                <span class="star" [ngClass]="{'filled': i < workout.stars}">☆</span>
+              </ng-container>
+            </span>
+          </div>
+
+        <div class="origins">
+            <span *ngFor="let origin of workout.origins">
+                {{origin}}
+            </span>
+        </div>
+
+        <div class="tags">
+            <app-tags [workoutPageTags]="workout.tags" justifyContent="start"></app-tags>
+        </div>
+
+        <div class="workout-time">
+            <span>
+                Workout time per day is <strong>{{workout.workoutTime}}</strong> minutes
+            </span>
+        </div>
+
+        <div class="days">
+            <span>
+                📆{{workout.days}}
+            </span>
+          </div>
+
+          <button (click)="addToMy()">Add to My Workouts</button>
+        </div>
+        </div>
+        
